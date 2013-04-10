@@ -12,6 +12,8 @@
 
     <div tal:content="context/Title">Title inserted here</div>
 
+    <img tal:replace="structure context/@@images/image/mini" />
+
     <div tal:condition="context/text"
       tal:content="structure context/text/output" />
 

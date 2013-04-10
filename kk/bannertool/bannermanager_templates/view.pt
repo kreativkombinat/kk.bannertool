@@ -18,10 +18,30 @@
       tal:condition="context/Description"
       tal:content="context/Description" />
 
-    <div class="alert">
-      <h4>Info</h4>
-      <p>Banner lsiting goes here</p>
+    <h2 i18n:translate="">Available banners</h2>
+
+    <div tal:define="
+        Batch python:modules['Products.CMFPlone'].Batch;
+        b_size python:int(request.get('b_size', 20));
+        b_start python:int(request.get('b_start', 0));
+        results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
+        batch python:Batch(results, b_size, b_start);">
+      <div class="banner-preview" tal:repeat="item results">
+          <h3 tal:content="item/Title" />
+          <img tal:define="item_obj item/getObject;
+                           scales item_obj/@@images"
+            tal:replace="structure python: scales.tag('image', scale='mini')"
+            />
+          <p class="text-muted" tal:content="item/Description" />
+          <h4>Body Text</h4>
+          <p tal:condition="item/text"
+            tal:content="structure item/text/output" />
+          <a class="btn" tal:attributes="href item/getURL">
+            View Details</a>
+      </div>
+      <div metal:use-macro="context/batch_macros/macros/navigation" />
     </div>
+
   </section>
 
 
