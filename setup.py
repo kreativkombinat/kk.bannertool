@@ -26,7 +26,7 @@ setup(name='kk.bannertool',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.dexterity',
+          'plone.app.dexterity [grok, relations]',
           'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
       ],
@@ -39,6 +39,5 @@ setup(name='kk.bannertool',
       # addcontent support from paster and before you distribute
       # your package.
       setup_requires=["PasteScript"],
-      paster_plugins = ["ZopeSkel"],
-
+      paster_plugins=["ZopeSkel"],
       )
