@@ -12,6 +12,9 @@
 
     <div tal:content="context/Title">Title inserted here</div>
 
+    <div tal:condition="context/text"
+      tal:content="structure context/text/output" />
+
   </metal:content-core>
 </metal:main>
 
