@@ -1,16 +1,16 @@
 <div class="bannerbar" id="bannerbar"
     tal:condition="viewlet/available">
-    <div class="banner-carousel" id="banner-scroller">
-        <div class="banners"
+    <div class="slider" id="banner-slider">
+        <div class="slider-banners"
             tal:define="items viewlet/banners">
             <tal:banners tal:repeat="item items">
-                <div class="banner"
+                <div class="slider-banner"
                     tal:define="item_url item/url;
                                  banner_img python:item_url+'/@@images/image'">
-                    <div class="banner-content"
+                    <div class="slider-banner-content"
                           tal:attributes="style string:background:url($banner_img) no-repeat 100% 100% scroll;">
                         <img tal:replace="structure item/image_tag">
-                        <div class="banner-caption"
+                        <div class="slider-banner-caption"
                             tal:define="klass item/banner_class"
                             tal:attributes="class python:'banner-caption ' + klass">
                             <div tal:content="structure item/text" />
@@ -20,33 +20,4 @@
             </tal:banners>
         </div>
     </div>
-    <!----<div class="carousel slide banner-wrapper" id="bannerCarousel">
-        <ol class="carousel-indicators">
-            <tal:block tal:repeat="item viewlet/banners">
-                <li data-target="#bannerCarousel"
-                    tal:define="nbr repeat/item/index"
-                    tal:attributes="data-slide-to string:nbr"></li>
-            </tal:block>
-        </ol>
-        <div class="carousel-inner">
-            <tal:block tal:repeat="item viewlet/banners">
-                <div class="item active">
-                  <img tal:replace="structure item/image_tag">
-                    <div class="carousel-caption" tal:condition="not:item/text">
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                  <div class="carousel-caption" tal:condition="item/text">
-                    <div tal:replace="structure item/text" />
-                  </div>
-                </div>
-            </tal:block>
-        </div>
-        <a class="left carousel-control" href="#bannerCarousel" data-slide="prev">
-          <i class="icon-chevron-left">&raquo;</i>
-        </a>
-        <a class="right carousel-control" href="#bannerCarousel" data-slide="next">
-          <i class="icon-chevron-right">&laquo;</i>
-        </a>
-    </div>-->
 </div>
