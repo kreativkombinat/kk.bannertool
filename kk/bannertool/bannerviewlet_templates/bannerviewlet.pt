@@ -1,9 +1,26 @@
 <div class="bannerbar" id="bannerbar"
     tal:condition="viewlet/available">
-    <div class="alert">
-        Bannertool: this will be filled with the actual contents
+    <div class="banner-carousel" id="banner-scroller">
+        <div class="banners"
+            tal:define="items viewlet/banners">
+            <tal:banners tal:repeat="item items">
+                <div class="banner"
+                    tal:define="item_url item/url;
+                                 banner_img python:item_url+'/@@images/image'">
+                    <div class="banner-content"
+                          tal:attributes="style string:background:url($banner_img) no-repeat 100% 100% scroll;">
+                        <img tal:replace="structure item/image_tag">
+                        <div class="banner-caption"
+                            tal:define="klass item/banner_class"
+                            tal:attributes="class python:'banner-caption ' + klass">
+                            <div tal:content="structure item/text" />
+                        </div>
+                    </div>
+                </div>
+            </tal:banners>
+        </div>
     </div>
-    <div class="carousel slide banner-wrapper" id="bannerCarousel">
+    <!----<div class="carousel slide banner-wrapper" id="bannerCarousel">
         <ol class="carousel-indicators">
             <tal:block tal:repeat="item viewlet/banners">
                 <li data-target="#bannerCarousel"
@@ -14,57 +31,22 @@
         <div class="carousel-inner">
             <tal:block tal:repeat="item viewlet/banners">
                 <div class="item active">
-                  <img data-src="holder.js/900x500/auto/#777:#777" alt=""
-                    tal:replace="structure item/image_tag">
-                  <div class="carousel-caption">
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  <img tal:replace="structure item/image_tag">
+                    <div class="carousel-caption" tal:condition="not:item/text">
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                  <div class="carousel-caption" tal:condition="item/text">
+                    <div tal:replace="structure item/text" />
                   </div>
                 </div>
             </tal:block>
         </div>
         <a class="left carousel-control" href="#bannerCarousel" data-slide="prev">
-          <i class="icon-chevron-left"></i>
+          <i class="icon-chevron-left">&raquo;</i>
         </a>
         <a class="right carousel-control" href="#bannerCarousel" data-slide="next">
-          <i class="icon-chevron-right"></i>
+          <i class="icon-chevron-right">&laquo;</i>
         </a>
-    </div>
-</div>
-
-<div class="carousel slide bs-docs-carousel-example">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="item active">
-      <img data-src="holder.js/900x500/auto/#777:#777" alt="">
-      <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </div>
-    <div class="item">
-      <img data-src="holder.js/900x500/auto/#777:#777" alt="">
-      <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </div>
-    <div class="item">
-      <img data-src="holder.js/900x500/auto/#777:#777" alt="">
-      <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
-    </div>
-  </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
+    </div>-->
 </div>
