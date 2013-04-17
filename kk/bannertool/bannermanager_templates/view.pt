@@ -27,17 +27,25 @@
         results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
         batch python:Batch(results, b_size, b_start);">
       <div class="banner-preview" tal:repeat="item results">
-          <h3 tal:content="item/Title" />
-          <img tal:define="item_obj item/getObject;
-                           scales item_obj/@@images"
-            tal:replace="structure python: scales.tag('image', scale='mini')"
-            />
-          <p class="text-muted" tal:content="item/Description" />
-          <h4>Body Text</h4>
-          <p tal:condition="item/text"
-            tal:content="structure item/text/output" />
-          <a class="btn" tal:attributes="href item/getURL">
-            View Details</a>
+        <div class="row">
+          <div class="col-span-3">
+            <div class="thumbnail">
+              <img tal:define="item_obj item/getObject;
+                             scales item_obj/@@images"
+                tal:replace="structure python: scales.tag('image', scale='mini')"
+                />
+              </div>
+          </div>
+          <div class="col-span-9">
+            <h3 tal:content="item/Title" />
+            <p class="text-muted" tal:content="item/Description" />
+            <p tal:condition="item/text"
+              tal:content="structure item/text/output" />
+            <a tal:attributes="href item/getURL">
+              View Details</a>
+          </div>
+        </div>
+        <hr>
       </div>
       <div metal:use-macro="context/batch_macros/macros/navigation" />
     </div>

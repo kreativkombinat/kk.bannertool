@@ -26,6 +26,7 @@ setup(name='kk.bannertool',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.api',
           'plone.app.dexterity [grok, relations]',
           'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-

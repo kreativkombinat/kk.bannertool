@@ -2,26 +2,22 @@ from five import grok
 from plone.directives import dexterity, form
 
 from zope import schema
-from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-from zope.interface import invariant, Invalid
-
-from z3c.form import group, field
-
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.namedfile.field import NamedImage, NamedFile
-from plone.namedfile.field import NamedBlobImage, NamedBlobFile
+from plone.namedfile.field import NamedBlobImage
 
 from plone.app.textfield import RichText
-
-from z3c.relationfield.schema import RelationList, RelationChoice
-from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from kk.bannertool import MessageFactory as _
 
 
-# Interface class; used to define content-type schema.
+positions = SimpleVocabulary(
+    [SimpleTerm(value=u'caption-top-left', title=_(u'Top Left')),
+     SimpleTerm(value=u'caption-top-right', title=_(u'Top Right')),
+     SimpleTerm(value=u'caption-bottom-left', title=_(u'Bottom Left')),
+     SimpleTerm(value=u"caption-bottom-right", title=_(u"Bottom Right"))])
+
 
 class IBanner(form.Schema, IImageScaleTraversable):
     """
@@ -37,6 +33,12 @@ class IBanner(form.Schema, IImageScaleTraversable):
                       u"leave this field empty the description will be used "
                       u"instead."),
         required=False,
+    )
+    position = schema.Choice(
+        title=_(u"Teaser Text Position"),
+        vocabulary=positions,
+        required=False,
+        default=u"caption-bottom-left",
     )
 
 

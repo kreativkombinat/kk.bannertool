@@ -1,0 +1,6 @@
+<layers>
+  <layer
+    name="kk.bannertool.layer"
+    interface="kk.bannertool.interfaces.IBannerTool"
+  />
+</layers>
